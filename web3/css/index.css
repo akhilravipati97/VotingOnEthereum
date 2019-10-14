@@ -1,0 +1,15 @@
+#cards-list-collapsible li{
+	margin-top: 10px;
+}
+
+#cards-list-collapsible-inner li{
+	margin-top: 10px;
+}
+
+td {
+	word-wrap:break-word;
+}
+
+.card-content p{
+	opacity: 0.7;
+}

@@ -1,0 +1,499 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="js/materialize.min.js"></script>
+		<script src="js/web3.min.js"></script>
+	</head>
+	<body class="grey lighten-4">
+		<nav>
+			<div class="nav-wrapper">
+				<ul>
+					<li id="preparationFunctions" class="active z-depth-3"><a>Prepare Voting Data</a></li>
+					<li id="readFunctions" ><a>Read smart contract information</a></li>
+					<li id="voteFunctions" ><a>Voting Platform</a></li>
+					<li id="blockchainFunctions"><a>Tallying and Blockchain examination</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="page" id="preparationFunctionsPage">
+			<div class="row" style="margin-top:20px;">
+				<div class="col s10 offset-s1">
+					<ul class="collapsible popout" data-collapsible="accordion" id="cards-list-collapsible-outer-1">
+						<li id="preparationDataCards">
+							<div class="collapsible-header grey lighten-2">Voting Data</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12 preparationData" id="unlockedAccounts">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Unlocked Ethereum Accounts</span>
+												<!--<p> will be populated later-->
+											</div>
+										</div>
+									</div>
+									<div class="col s12 preparationData" id="signature">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Signature</span>
+												<!--<p> will be populated later-->
+											</div>
+										</div>
+									</div>
+									<div class="col s12 preparationData" id="secretKey">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Secret Key</span>
+												<!--<p> will be populated later-->
+											</div>
+										</div>
+									</div>
+									<div class="col s12 preparationData" id="secretKeyHash">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Secret Key Hash</span>
+												<!--<p> will be populated later-->
+											</div>
+										</div>
+									</div>
+									<div class="col s12 preparationData" id="candidateName">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Candidate Name</span>
+												<!--<p> will be populated later-->
+											</div>
+										</div>
+									</div>
+									<div class="col s12 preparationData" id="encryptedVote">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">EncryptedVote</span>
+												<!--<p> will be populated later-->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="col s10 offset-s1">
+					<ul class="collapsible popout" data-collapsible="accordion" id="cards-list-collapsible-outer-2">
+						<li id="preparationDataFunctionsCards">
+							<div class="collapsible-header grey lighten-2">Voting Data Functions</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<ul class="collapsible popout" data-collapsible="accordion" id="cards-list-collapsible-inner">
+										<li id="unlockEthereumAccounts">
+											<div class="collapsible-header grey lighten-2">Unlock Ethereum Accounts</div>
+											<div class="collapsible-body light-green lighten-3">
+												<div class="row">
+													<div class="col s12">
+														<div class="col s12 preparationDataFunctions" id="unlockAccount">
+															<div class="card teal darken-2">
+																<div class="card-content white-text hoverable">
+																	<span class="card-title">Unlock Ethereum Account</span>
+																	<div class="input-field">
+																		<select id="ethereum-accounts">
+																			<option value="" disabled selected>Choose Ethereum Account to unlock</option>
+																			<!--Others will be populated by JS-->
+																		</select>
+																	</div>									
+																	<div class="input-field">
+																		<input id="ethereum-account-password" type="password">
+																		<label for="ethereum-account-password">Password</label>
+																	</div>
+																	<a id="unlockEthereumAccount" class="waves-effect waves-light btn orange darken-3">Unlock</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li id="gettingSignature">
+											<div class="collapsible-header grey lighten-2">Get Signature</div>
+											<div class="collapsible-body light-green lighten-3">
+												<div class="row">
+													<div class="col s12">
+														<div class="col s12 preparationDataFunctions" id="getSignature">
+															<div class="card teal darken-2">
+																<div class="card-content white-text hoverable">
+																	<span class="card-title">Get Signature from the Authority</span>
+																	<p>Sends the data to the authority to get signature and update that value in the data box above, with an indication of success or failure in the result box below.</p>
+																	<br>
+																	<div class="input-field">
+																		<input id="self-name" type="text">
+																		<label for="self-name" class="orange-text lighten-3">Your Name</label>
+																	</div>
+																	<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Get Signature</a>
+																	
+																	<div class="card purple lighten-5">
+																		<div class="card-content black-text hoverable">
+																			<p class="result"  style="font-size:20px">Result of button press will be here</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li id="choosingSecretKey">
+											<div class="collapsible-header grey lighten-2">Choose Secret Key</div>
+											<div class="collapsible-body light-green lighten-3">
+												<div class="row">
+													<div class="col s12">
+														<div class="col s12 preparationDataFunctions" id="chooseSecretKey">
+															<div class="card teal darken-2">
+																<div class="card-content white-text hoverable">
+																	<span class="card-title">Enter secret key and generate Hash</span>
+																	<p>Generates the hash of the secret key entered and updates both in the data box above with an indication of success of failure in the result box below.</p>
+																	<br>
+																	<div class="input-field">
+																		<input id="secret-key" type="text">
+																		<label for="secret-key" class="orange-text lighten-3">Secret Key</label>
+																	</div>
+																	<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Create Hash</a>
+																	
+																	<div class="card purple lighten-5">
+																		<div class="card-content black-text hoverable">
+																			<p class="result" style="font-size:20px">Result of button press will be here</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li id="choosingCandidateName">
+											<div class="collapsible-header grey lighten-2">Choose Candidate Name</div>
+											<div class="collapsible-body light-green lighten-3">
+												<div class="row">
+													<div class="col s12">
+														<div class="col s12 preparationDataFunctions" id="candidateName">
+															<div class="card teal darken-2">
+																<div class="card-content white-text hoverable">
+																	<span class="card-title">Enter candidate name and generate encrypted vote</span>
+																	<p>Generates the encrypted vote from the candidate name entered and updates both in the data box above with an indication of success of failure in the result box below. [NOTE: Secret Key needs to be chosen first.]</p>
+																	<br>
+																	<div class="input-field">
+																		<input id="candidate-name" type="text">
+																		<label for="candidate-name" class="orange-text lighten-3">Candidate Name</label>
+																	</div>
+																	<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px" disabled>Create Vote</a>
+																	
+																	<div class="card purple lighten-5">
+																		<div class="card-content black-text hoverable">
+																			<p class="result"  style="font-size:20px">Result of button press will be here</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class = "page" id="readFunctionsPage" style="display:none">
+			<div class="row" style="margin-top:20px;">
+				<div class="col s10 offset-s1">
+					<ul class="collapsible popout" data-collapsible="accordion" id="cards-list-collapsible">
+						<li id="owner">
+							<div class="collapsible-header grey lighten-2">Fetch Contract Owner Address</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Contract Owner</span>
+												<p>Returns the smart contract owner's Ethereum address, who submitted the contract to the blockchain.</p>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Get Owner</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="signingAuthority">
+							<div class="collapsible-header grey lighten-2" >Fetch Signing Authority Address</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Signing authority</span>
+												<p>Returns the Ethereum address of the authority will provide with the required signatures.</p>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Get Signing Authority</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="votes">
+							<div class="collapsible-header grey lighten-2">Check Encrypted Vote</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Encrypted Vote</span>
+												<p>Checks if the given Encrypted Vote has been submitted or not.</p>
+												<br>
+												<div class="input-field">
+													<input id="encrypted-vote" type="text">
+													<label for="encrypted-vote" class="orange-text lighten-3">Ethereum Address</label>
+												</div>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Get Encrypted Vote</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="usedAddress">
+							<div class="collapsible-header grey lighten-2">Check Address Usage</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Address Usage</span>
+												<p>Checks if the given Ethereum address has been already used or not.</p>
+												<br>
+												<div class="input-field">
+													<input id="ethereum-address-for-address-usage" type="text">
+													<label for="ethereum-address-for-address-usage" class="orange-text lighten-3">Ethereum Address</label>
+												</div>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Check Address Usage</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="secretKeyHashes">
+							<div class="collapsible-header grey lighten-2">Check for SecretKey Hash Submission</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">SecretKey Submission Check</span>
+												<p>Checks if the given secret key hash has been submitted or not.</p>
+												<br>
+												<div class="input-field">
+													<input id="secret-key-hash" type="text">
+													<label for="secret-key-hash" class="orange-text lighten-3">Secret Key Hash</label>
+												</div>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Check Submission</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="voterApproved">
+							<div class="collapsible-header grey lighten-2">Check Address Authorization</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Address Authorization</span>
+												<p>Checks if the given Ethereum address has been authorized by the signing authority.</p>
+												<br>
+												<div class="input-field">
+													<input id="ethereum-address-for-checking-authorization" type="text">
+													<label for="ethereum-address-for-checking-authorization" class="orange-text lighten-3">Ethereum Address</label>
+												</div>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px">Check Authorization</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="page" id="voteFunctionsPage" style="display:none">
+			<div class="row" style="margin-top:20px;">				
+				<div class="col s10 offset-s1">
+					<ul class="collapsible popout" data-collapsible="accordion" id="cards-list-collapsible">
+						<li id="submitSignature">
+							<div class="collapsible-header grey lighten-2">Submit the Signature received from Authorities</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Signature Submission</span>
+												<p>Submits the signature to the smart contract and returns if it the submitter is authenticated or not. [NOTE: Necessary data must be generated in the Prepare Data tab first, for the buttons to be enabled.]</p>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px" disabled>Submit Signature</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="submitSecretKeyHash">
+							<div class="collapsible-header grey lighten-2" >Submit the Secret Key's Hash</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Secret Key Hash submission</span>
+												<p>Submits the secret key's hash and returns with success if the submitter is already authenticated.[NOTE: Necessary data must be generated in the Prepare Data tab first, for the buttons to be enabled.]</p>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px" disabled>Submit Secret Key Hash</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="submitEncryptedVote">
+							<div class="collapsible-header grey lighten-2">Submit Encrypted Vote</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Encrypted Vote Submission</span>
+												<p>Submits the Encrypted Vote to the smart contract and returns if it was a success or not. [NOTE: Necessary data must be generated in the Prepare Data tab first, for the buttons to be enabled.]</p>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px" disabled>Submit Encrypted Vote</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li id="submitSecretKey">
+							<div class="collapsible-header grey lighten-2">Submit Secret Key</div>
+							<div class="collapsible-body light-green lighten-3">
+								<div class="row">
+									<div class="col s12">
+										<div class="card teal darken-2">
+											<div class="card-content white-text hoverable">
+												<span class="card-title">Secret Key Submission</span>
+												<p>Submits the secret and returns if it was a success or not.  [NOTE: Necessary data must be generated in the Prepare Data tab first, for the buttons to be enabled.]</p>
+												<a class="waves-effect waves-light btn orange darken-3" style="margin-top: 15px" disabled>Submit Secret Key</a>
+												
+												<div class="card purple lighten-5">
+													<div class="card-content black-text hoverable">
+														<p class="result"  style="font-size:20px">Result of button press will be here</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>						
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="page" id="blockchainFunctionsPage" style="display:none">
+			<div class="row" style="margin-top:20px;">
+				<div class="col s10 offset-s1">
+					<ul class="collapsible light-green lighten-3" data-collapsible="accordion" id="resultsData">
+					</ul>
+				</div>
+			</div>
+			<div class="row" style="margin-top:20px;">
+				<div class="col s10 offset-s1">
+					<ul class="collapsible light-green lighten-3" data-collapsible="accordion" id="eventsData">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="js/web3-interface.js"></script>
+		<script src="js/sjcl.js"></script>
+		<script src="js/preparationPage.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/eventsWatcher.js"></script>
+	</body>
+</html>
