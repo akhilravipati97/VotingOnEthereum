@@ -1,0 +1,1 @@
+geth --identity "MyNode3" --datadir "XYZ:\Private-Blockchain" --rpc --rpcport "6500" --rpccorsdomain "*" --port "12345" --nodiscover --rpcapi "db,eth,net,web3,admin,personal,miner" init .\CustomGenesis.json
